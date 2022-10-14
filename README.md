@@ -7,6 +7,8 @@
 
 ## Example of data file:
 (mass.dat)
+
+"""
 LinePlot
 Mass
 4 13 MassUnit
@@ -24,6 +26,7 @@ p red 134.98  MeV $\pi^0$
 p red 497.6   MeV $K^0$
 p red 3097    MeV $J/\psi$
 p red 9460.3  MeV $\Upsilon(1S)$%
+"""
 
 + Explanations:
 + l1: LinePlot: For future extension
