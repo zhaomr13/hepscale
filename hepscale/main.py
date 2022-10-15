@@ -53,5 +53,5 @@ def helpinfo():
 def main():
     datadir = os.path.join(os.environ["HOME"], ".hepscale/")
     if (not os.path.exists(datadir)):
-        os.makedirs(datafile)
+        os.makedirs(datadir)
     cli()
