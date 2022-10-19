@@ -39,6 +39,7 @@ def plotscale(data):
     linenames = []
     colors = []
     linecolors = []
+    textposition = []
     print(unitstyle)
     with open(data, "r") as f:
         plotstyle = f.readline()
@@ -64,7 +65,22 @@ def plotscale(data):
                 linecolors.append(l[1])
                 xlines.append(float(l[2]) * unit[l[3]])
                 linenames.append("{} {}".format(l[2], l[3]))
-                ylines.append(3)
+                if (len(l) > 4):
+                    textposition.append(l[4])
+                    ylines.append(2.5)
+                else:
+                    textposition.append("l")
+                    ylines.append(3)
+            elif (l[0] == "q"):
+                linecolors.append(l[1])
+                xlines.append(1.0/float(l[2]) * unit[l[3]])
+                linenames.append("({} {})$^{{-1}}$".format(l[2], l[3]))
+                if (len(l) > 4):
+                    textposition.append(l[4])
+                    ylines.append(2.5)
+                else:
+                    textposition.append("l")
+                    ylines.append(3)
 
     fig, ax = plt.subplots(figsize=(20, 4))
     fig.subplots_adjust(bottom=0.3)
@@ -93,10 +109,10 @@ def plotscale(data):
                         horizontalalignment="right",
                         verticalalignment="bottom" if l > 0 else "top")
 
-        for d, l, r in zip(xlines, ylines, linenames):
+        for d, l, r, p in zip(xlines, ylines, linenames, textposition):
             ax.annotate(r, xy=(d, l),
                         xytext=(-3, np.sign(l)*3), textcoords="offset points",
-                        horizontalalignment="right",
+                        horizontalalignment="right",# if p == "r" else "right",
                         verticalalignment="bottom" if l > 0 else "top")
 
 
